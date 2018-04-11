@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 
 
-    <link href={% static 'https://fonts.googleapis.com/css?family=Unica+One'  %}rel='stylesheet' type='text/css'>
-    <link href={% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' %} rel='stylesheet' type='text/css'>
+    <link href={% static 'https://fonts.googleapis.com/css?family=Unica+One' %}rel='stylesheet' type='text/css'>
+    <link href={% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700' %} rel='stylesheet'
+          type='text/css'>
 
     <!-- Main css -->
     {% comment %}<link rel="stylesheet" href="css/style.css">{% endcomment %}
@@ -62,7 +63,8 @@
                 <li><a href="#screenshot" class="smoothScroll">Screenshots</a></li>
                 <li><a href="#pricing" class="smoothScroll">Pricing</a></li>
                 <li><a href="#newsletter" class="smoothScroll">Newsletter</a></li>
-                <li><a href="#" data-toggle="modal" data-target="#modal1">Contact</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modal1">Đăng nhập</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#modal2">Đăng kí</a></li>
             </ul>
         </div>
 
@@ -205,7 +207,7 @@
                     </a>
                 </div>
 
-                 <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
+                <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
                     <a href="{% static 'images/screenshot-img3.jpg' %}" class="image-popup">
                         <img src="{% static 'images/screenshot-img3.jpg' %}" class="img-responsive" alt="screenshot">
                     </a>
@@ -217,25 +219,25 @@
                     </a>
                 </div>
 
-                 <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
+                <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
                     <a href="{% static 'images/screenshot-img5.jpg' %}" class="image-popup">
                         <img src="{% static 'images/screenshot-img5.jpg' %}" class="img-responsive" alt="screenshot">
                     </a>
                 </div>
 
-                 <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
+                <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
                     <a href="{% static 'images/screenshot-img6.jpg' %}" class="image-popup">
                         <img src="{% static 'images/screenshot-img6.jpg' %}" class="img-responsive" alt="screenshot">
                     </a>
                 </div>
 
-                 <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
+                <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
                     <a href="{% static 'images/screenshot-img7.jpg' %}" class="image-popup">
                         <img src="{% static 'images/screenshot-img7.jpg' %}" class="img-responsive" alt="screenshot">
                     </a>
                 </div>
 
-                 <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
+                <div class="item col-md-3 col-sm-3 wow fadeInUp" data-wow-delay="0.9s">
                     <a href="{% static 'images/screenshot-img8.jpg' %}" class="image-popup">
                         <img src="{% static 'images/screenshot-img8.jpg' %}" class="img-responsive" alt="screenshot">
                     </a>
@@ -383,15 +385,36 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h2 class="modal-title">Contact Form</h2>
+                <h2 class="modal-title">Đăng nhập</h2>
             </div>
 
             <form action="#" method="post">
                 <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
-                <input name="email" type="email" class="form-control" id="email" placeholder="Email Address" required>
-                <textarea name="message" rows="3" class="form-control" id="message" placeholder="Message"
-                          required></textarea>
-                <input name="submit" type="submit" class="form-control" id="submit" value="Send Message">
+                <input name="password" type="password" class="form-control" id="id_password" placeholder="Password" required>
+                <input name="submit" type="submit" class="form-control" id="submit" value="Đăng nhập">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-popup">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title">Đăng kí</h2>
+            </div>
+
+            <form action="#" method="post">
+                <input name="name" type="text" class="form-control" id="name" placeholder="Tên của bạn" required>
+                <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn" required>
+                <input name="password" type="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                <input name="course" type="text" class="form-control" id="course" placeholder="Khóa học">
+                <input name="gifted" type="text" class="form-control" id="gifted" placeholder="Năng khiếu">
+                <input name="hobby" type="text" class="form-control" id="hobby" placeholder="Sở thích">
+                <input name="desire" type="text" class="form-control" id="desire" placeholder="Mong muốn">
+                <input name="submit" type="submit" class="form-control" id="submit" value="Đăng kí">
             </form>
         </div>
     </div>
