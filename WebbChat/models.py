@@ -10,7 +10,7 @@ class User(models.Model):
     gifted = models.CharField(max_length=250)
     hobby = models.CharField(max_length=250)
     desire = models.CharField(max_length=250)
-    
+
 
 
 # Create your models here.

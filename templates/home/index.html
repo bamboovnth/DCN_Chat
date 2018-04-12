@@ -374,7 +374,9 @@
                 <h2 class="modal-title">Đăng kí</h2>
             </div>
 
-            <form action="#" method="post">
+            <form action="{% url 'register' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <input name="name" type="text" class="form-control" id="name" placeholder="Tên của bạn" required>
                 <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn" required>
                 <input name="password" type="password" class="form-control" id="password" placeholder="Mật khẩu"
