@@ -61,8 +61,8 @@
                 <li><a href="#home" class="smoothScroll">Home</a></li>
                 <li><a href="#about" class="smoothScroll">About</a></li>
                 <li><a href="#screenshot" class="smoothScroll">Screenshots</a></li>
-                <li><a href="#pricing" class="smoothScroll">Pricing</a></li>
-                <li><a href="#newsletter" class="smoothScroll">Newsletter</a></li>
+                <li><a href="#pricing" class="smoothScroll">Bạn bè</a></li>
+                <li><a href="#newsletter" class="smoothScroll">New</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#modal1">Đăng nhập</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#modal2">Đăng kí</a></li>
             </ul>
@@ -88,7 +88,7 @@
                     <h1 class="wow fadeInUp" data-wow-delay="0.6s">Chat HAUI</h1>
                     <p class="wow fadeInUp" data-wow-delay="0.8s">Nơi các bạn thoải mái trao đổi thả thính nhau ! :)</p>
                     <a href="#pricing" class="wow fadeInUp section-btn btn btn-success smoothScroll"
-                       data-wow-delay="1s">Download App</a>
+                       data-wow-delay="1s">Sắp ra mắt</a>
                 </div>
             </div>
 
@@ -249,68 +249,35 @@
     </div>
 </section>
 
-
 <!-- Pricing Section -->
 
 <section id="pricing">
+
     <div class="container">
         <div class="row">
 
             <div class="col-md-12 col-sm-12">
                 <div class="section-title">
-                    <h1>App Pricing</h1>
+                    <h1>Friends</h1>
                     <hr>
                 </div>
             </div>
-
-            <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.4s">
-                <div class="pricing-plan">
-                    <div class="pricing-month">
-                        <h2>$60</h2>
+            {% for friend in friends %}
+                <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.4s">
+                    <div class="pricing-plan">
+                        <div class="pricing-month">
+                            <h2>{{ friend.name }}</h2>
+                        </div>
+                        <div class="pricing-title">
+                            <h3>{{ friend.desire }}</h3>
+                        </div>
+                        <p>{{ friend.course }}</p>
+                        <p>{{ friend.gifted }}</p>
+                        <p>{{ friend.hobby }}</p>
+                        <button class="btn btn-default section-btn">Trò chuyện</button>
                     </div>
-                    <div class="pricing-title">
-                        <h3>Starter</h3>
-                    </div>
-                    <p>40 Users</p>
-                    <p>10GB per user</p>
-                    <p>Unlimited Support</p>
-                    <p>1 Year License</p>
-                    <button class="btn btn-default section-btn">Register now</button>
                 </div>
-            </div>
-
-            <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.6s">
-                <div class="pricing-plan">
-                    <div class="pricing-month">
-                        <h2>$120</h2>
-                    </div>
-                    <div class="pricing-title">
-                        <h3>Business</h3>
-                    </div>
-                    <p>100 Users</p>
-                    <p>20GB per user</p>
-                    <p>Unlimited Support</p>
-                    <p>2 Years License</p>
-                    <button class="btn btn-default section-btn">Register now</button>
-                </div>
-            </div>
-
-            <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="0.8s">
-                <div class="pricing-plan">
-                    <div class="pricing-month">
-                        <h2>$200</h2>
-                    </div>
-                    <div class="pricing-title">
-                        <h3>Advanced</h3>
-                    </div>
-                    <p>200 Users</p>
-                    <p>30GB per user</p>
-                    <p>Unlimted Support</p>
-                    <p>3 Years License</p>
-                    <button class="btn btn-default section-btn">Register now</button>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -390,7 +357,8 @@
 
             <form action="#" method="post">
                 <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
-                <input name="password" type="password" class="form-control" id="id_password" placeholder="Password" required>
+                <input name="password" type="password" class="form-control" id="id_password" placeholder="Password"
+                       required>
                 <input name="submit" type="submit" class="form-control" id="submit" value="Đăng nhập">
             </form>
         </div>
@@ -409,7 +377,8 @@
             <form action="#" method="post">
                 <input name="name" type="text" class="form-control" id="name" placeholder="Tên của bạn" required>
                 <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn" required>
-                <input name="password" type="password" class="form-control" id="password" placeholder="Mật khẩu" required>
+                <input name="password" type="password" class="form-control" id="password" placeholder="Mật khẩu"
+                       required>
                 <input name="course" type="text" class="form-control" id="course" placeholder="Khóa học">
                 <input name="gifted" type="text" class="form-control" id="gifted" placeholder="Năng khiếu">
                 <input name="hobby" type="text" class="form-control" id="hobby" placeholder="Sở thích">
