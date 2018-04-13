@@ -1,9 +1,15 @@
 import re
+import _md5
 from django.core.exceptions import ObjectDoesNotExist
 
 from django import forms
 
 from WebbChat.models import User
+
+
+def hashlib_md5(msg):
+    password_md5 = _md5.md5(msg.encode("utf-8")).hexdigest()
+    return password_md5
 
 
 class FormLogin(forms.Form):
@@ -34,14 +40,19 @@ class FormRegister(forms.Form):
             return name
         raise forms.ValidationError('tai khoan da ton tai')
 
+    def hashlib_md5(self):
+        password = self.cleaned_data['password']
+        password_md5 = _md5.md5(password.encode('utf-8')).hexdigest()
+        return password_md5
+
     def save_user(self):
         """
         Describe: dang ki mot user moi
         :return: not return
         """
-        User.objects.create(name=self.cleaned_data['name'],
+        User.objects.create(name=self.clean_user(),
                             email=self.cleaned_data['email'],
-                            password=self.cleaned_data['password'],
+                            password=self.hashlib_md5(),
                             course=self.cleaned_data['course'],
                             gifted=self.cleaned_data['gifted'],
                             hobby=self.cleaned_data['hobby'],
