@@ -355,7 +355,9 @@
                 <h2 class="modal-title">Đăng nhập</h2>
             </div>
 
-            <form action="#" method="post">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
                 <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
                 <input name="password" type="password" class="form-control" id="id_password" placeholder="Password"
                        required>

@@ -7,11 +7,33 @@ from WebbChat.models import User
 
 
 class FormLogin(forms.Form):
+    """init form login"""
+
     name = forms.CharField(label='name', max_length=100)
     password = forms.CharField(label='password', max_length=100)
 
+    def logged(self):
+        """Descibe:
+            check login
+            return index
+        """
+
+        """index check gia tri khi login
+            return 0: neu tai khoan mat khau ko hop le
+            retuen !=0; neu hop le
+        """
+        index = 0
+        for user in User.objects.all():
+            if user.name == self.cleaned_data['name'] and user.password==self.cleaned_data['password']:
+                index = index + 1
+
+        return index
+
 
 class FormRegister(forms.Form):
+    """
+       Describe: init form Register
+    """
     name = forms.CharField(label='name', max_length=250)
     email = forms.CharField(label='email', max_length=250)
     password = forms.CharField(label='password', max_length=250)
@@ -31,6 +53,10 @@ class FormRegister(forms.Form):
         raise forms.ValidationError('tai khoan da ton tai')
 
     def save_user(self):
+        """
+        Describe: dang ki mot user moi
+        :return: not return
+        """
         User.objects.create(name=self.cleaned_data['name'],
                             email=self.cleaned_data['email'],
                             password=self.cleaned_data['password'],
@@ -38,5 +64,4 @@ class FormRegister(forms.Form):
                             gifted=self.cleaned_data['gifted'],
                             hobby=self.cleaned_data['hobby'],
                             desire=self.cleaned_data['desire'],
-
                             )
