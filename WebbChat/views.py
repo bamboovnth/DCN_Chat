@@ -29,10 +29,12 @@ def login(request):
     if request.method == 'POST':
         form = FormLogin(request.POST)
         if form.is_valid():
-            if form.logged() >= 1:
-                return HttpResponse('dang nhap thanh cong')
-            else:
+            user = User.objects.filter(
+                name=form.cleaned_data['name'], password=form.cleaned_data['password']).first()
+            if not user:
                 return HttpResponse('that bai')
+            else:
+                return HttpResponse('thanh cong')
     return render(request, 'home/index.html', {'form': form})
 
 

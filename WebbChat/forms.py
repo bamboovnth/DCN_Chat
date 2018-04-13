@@ -8,26 +8,8 @@ from WebbChat.models import User
 
 class FormLogin(forms.Form):
     """init form login"""
-
     name = forms.CharField(label='name', max_length=100)
     password = forms.CharField(label='password', max_length=100)
-
-    def logged(self):
-        """Descibe:
-            check login
-            return index
-        """
-
-        """index check gia tri khi login
-            return 0: neu tai khoan mat khau ko hop le
-            retuen !=0; neu hop le
-        """
-        index = 0
-        for user in User.objects.all():
-            if user.name == self.cleaned_data['name'] and user.password==self.cleaned_data['password']:
-                index = index + 1
-
-        return index
 
 
 class FormRegister(forms.Form):
