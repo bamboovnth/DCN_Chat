@@ -1,6 +1,7 @@
 from django.http import response, HttpResponse
 from django.shortcuts import render
 from .models import User
+from Utils import utils
 
 from WebbChat.forms import FormLogin
 from WebbChat.forms import FormRegister
@@ -30,11 +31,17 @@ def login(request):
         form = FormLogin(request.POST)
         if form.is_valid():
             user = User.objects.filter(
-                name=form.cleaned_data['name'], password=form.cleaned_data['password']).first()
+                name=form.cleaned_data['name'], password=utils.hashlib_md5(form.cleaned_data['password'])).first()
             if not user:
-                return HttpResponse('that bai')
+                return HttpResponse('ko thanh cong')
             else:
-                return HttpResponse('thanh cong')
+                list_friends = User.objects.filter(course=user.course)
+                user_logged = {
+                    'list_friends': list_friends,
+                    'users': user.name
+                }
+                return render(request, 'home/friends.html', user_logged)
+
     return render(request, 'home/index.html', {'form': form})
 
 
