@@ -44,3 +44,11 @@ class FormRegister(forms.Form):
                             hobby=self.cleaned_data['hobby'],
                             desire=self.cleaned_data['desire'],
                             )
+
+
+class FormManger(forms.Form):
+    name = forms.CharField(label='name', max_length=250)
+    hobby = forms.CharField(label='hobby', max_length=250)
+    course = forms.CharField(label='course', max_length=250)
+    gifted = forms.CharField(label='gifted', max_length=250)
+    desire = forms.CharField(label='desire', max_length=250)

@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-    <title>Table V04</title>
+    <title>List Friends</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -29,7 +29,8 @@
 {% endfor %}
 
 
-<p align="center" style="animation: ease"  ><font size="20sp" >Danh sách bạn bè</font></p>
+<p align="center" style="animation: ease"><font size="20sp">Danh sách bạn bè</font></p>
+
 
 <div class="limiter">
     <div class="container-table100">
@@ -51,6 +52,7 @@
                 </div>
 
                 <div class="table100-body js-pscroll">
+                    {% csrf_token %}
                     {% for friend in list_friends %}
                         <table>
                             <tbody>
@@ -89,7 +91,23 @@
         })
     });
 
+    var data = {
+        'a': 'a'
+    }
 
+    $('.cell100').click(function () {
+        $.post({
+            'url': '/details/',
+            'data': data,
+            'success': function () {
+                alert("thanh cong")
+            },
+            'error': function () {
+                alert("that bai")
+            }
+
+        });
+    });
 </script>
 <!--===============================================================================================-->
 <script src="{% static 'js/main.js' %}"></script>
