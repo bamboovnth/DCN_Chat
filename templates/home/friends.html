@@ -92,7 +92,8 @@
     });
 
     var data = {
-        'a': 'a'
+        'a': 'a',
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
     }
 
     $('.cell100').click(function () {
