@@ -1,4 +1,5 @@
 import re
+from Utils import utils
 from django.core.exceptions import ObjectDoesNotExist
 
 from django import forms
@@ -35,15 +36,19 @@ class FormRegister(forms.Form):
         raise forms.ValidationError('tai khoan da ton tai')
 
     def save_user(self):
-        """
-        Describe: dang ki mot user moi
-        :return: not return
-        """
-        User.objects.create(name=self.cleaned_data['name'],
+        User.objects.create(name=self.clean_user(),
                             email=self.cleaned_data['email'],
-                            password=self.cleaned_data['password'],
+                            password=utils.hashlib_md5(self.cleaned_data['password']),
                             course=self.cleaned_data['course'],
                             gifted=self.cleaned_data['gifted'],
                             hobby=self.cleaned_data['hobby'],
                             desire=self.cleaned_data['desire'],
                             )
+
+
+class FormManger(forms.Form):
+    name = forms.CharField(label='name', max_length=250)
+    hobby = forms.CharField(label='hobby', max_length=250)
+    course = forms.CharField(label='course', max_length=250)
+    gifted = forms.CharField(label='gifted', max_length=250)
+    desire = forms.CharField(label='desire', max_length=250)

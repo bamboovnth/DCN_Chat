@@ -1,9 +1,9 @@
 from django.http import response, HttpResponse
 from django.shortcuts import render
 from .models import User
+from Utils import utils
 
-from WebbChat.forms import FormLogin
-from WebbChat.forms import FormRegister
+from WebbChat.forms import *
 
 
 def index(request):
@@ -29,12 +29,21 @@ def login(request):
     if request.method == 'POST':
         form = FormLogin(request.POST)
         if form.is_valid():
+            # print(form.cleaned_data['name'])
+            # print(form.cleaned_data['password'])
             user = User.objects.filter(
-                name=form.cleaned_data['name'], password=form.cleaned_data['password']).first()
+                name=form.cleaned_data['name'], password=utils.hashlib_md5(form.cleaned_data['password'])).first()
             if not user:
-                return HttpResponse('that bai')
+                return HttpResponse('ko thanh cong')
             else:
-                return HttpResponse('thanh cong')
+                list_friends = User.objects.filter(course=user.course)
+                user_logged = {
+                    'list_friends': list_friends,
+                    'users': user.name
+                }
+                return render(request, 'home/friends.html', user_logged)
+    # print('a = ', request.GET.get('a'))
+    # print('b = ', request.GET.get('b'))
     return render(request, 'home/index.html', {'form': form})
 
 
@@ -51,5 +60,13 @@ def register(request):
             form.save_user()
             return HttpResponse('')
     return render(request, "home/index.html", {'form': form})
+
+
+def details(request):
+    form = FormManger()
+    if request.method == 'POST':
+        form = FormLogin(request.POST)
+        if form.is_valid():
+            pass
 
 # Create your views here.

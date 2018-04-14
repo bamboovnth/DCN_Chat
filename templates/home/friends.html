@@ -1,0 +1,117 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <title>List Friends</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css"' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+<p> Hello </p>
+{% for user in users %}
+    {{ user }}
+{% endfor %}
+
+
+<p align="center" style="animation: ease"><font size="20sp">Danh sách bạn bè</font></p>
+
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver3 m-b-110">
+                <div class="table100-head">
+
+                    <table>
+                        <thead>
+                        <tr class="row100 head">
+                            <th class="cell100 column1">Name</th>
+                            <th class="cell100 column2">Mong muốn</th>
+                            <th class="cell100 column3">Sở thích</th>
+                            <th class="cell100 column4">Năng khiếu</th>
+                            <th class="cell100 column5">Khóa</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class="table100-body js-pscroll">
+                    {% csrf_token %}
+                    {% for friend in list_friends %}
+                        <table>
+                            <tbody>
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{ friend.name }}</td>
+                                <td class="cell100 column2">{{ friend.desire }}</td>
+                                <td class="cell100 column3">{{ friend.hobby }}</td>
+                                <td class="cell100 column4">{{ friend.gifted }}</td>
+                                <td class="cell100 column5">{{ friend.course }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+<script src="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+<script>
+    $('.js-pscroll').each(function () {
+        var ps = new PerfectScrollbar(this);
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+
+    var data = {
+        'a': 'a',
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
+    }
+
+    $('.cell100').click(function () {
+        $.post({
+            'url': '/details/',
+            'data': data,
+            'success': function () {
+                alert("thanh cong")
+            },
+            'error': function () {
+                alert("that bai")
+            }
+
+        });
+    });
+</script>
+<!--===============================================================================================-->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
